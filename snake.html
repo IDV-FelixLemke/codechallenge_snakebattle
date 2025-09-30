@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./snake.css">
+    <title>Snake Battle</title>
+</head>
+<body>
+	<div id="SnakeApp" class="crossPattern">
+        <div id="StatusBar">Placeholder to holde some status text</div>
+        <canvas id="Field" width="800" height="800"></canvas>
+    </div>
+    <div id="EndGameOverlay" style="display:none">
+        <div id="EndGame" display="none">
+            <h1>Game Over</h1>
+            <div>And the Winner is <span style="margin-left:1em;margin-right:1em;width:1em; height:1em;display:inline-block" id="WinnerColor"></span> <span id="WinnerName">Team</span></div>
+            <div>Winning score <span id="WinnerScore">0</span></div>
+            <div>Traveled <span id="WinnerSteps">0</span> steps</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./board.js"></script>
+    <script type="text/javascript" src="./Teams/team_FL.js"></script>
+    <script type="text/javascript" src="./Teams/team_example.js"></script>
+    <script>
+        var SnakeAIs = [{
+            color: "hsl(20 100% 50%)",
+            team: "Example RunToFood",
+            moveFunction: team_example_runToFood
+        },{
+            color: "hsl(50 100% 50%)",
+            team: "Run Forest Run",
+            moveFunction: team_example_runToFood
+        },{
+            color: "hsl(00 100% 00%)",
+            team: "Men in Black",
+            moveFunction: team_example_tryToSurvive
+        },{
+            color: "hsl(120 100% 50%)",
+            team: "Example TryToSurvive",
+            moveFunction: team_example_tryToSurvive
+        }];
+    </script>
+    <script type="text/javascript" src="./snake.js"></script>
+    <script type="text/javascript" src="./game.js"></script>
+</body>
+</html>

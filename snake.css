@@ -1,0 +1,76 @@
+body {
+    margin:0;
+    --bgColor:hsl(120 80% 80%);
+    --grasColor:hsl(120 80% 30%);
+}
+
+.crossPattern{
+    background-color: var(--bgColor);
+    opacity: 0.8;
+    background: radial-gradient(circle, transparent 20%, var(--bgColor) 20%, var(--bgColor) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--bgColor) 20%, var(--bgColor) 80%, transparent 80%, transparent) 25px 25px, linear-gradient(var(--grasColor) 2px, transparent 2px) 0 -1px, linear-gradient(90deg, var(--grasColor) 2px, var(--bgColor) 2px) -1px 0;
+    background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+}
+
+#SnakeApp {
+    width:1200px;
+    height:1200px;
+/*     background-color: hsl(120 80% 80%); */
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#Field {
+    border: 5px solid var(--grasColor);
+    backdrop-filter: blur(1px) brightness(20%);
+}
+
+#StatusBar {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.teamStats {
+    display: flex;
+    margin:0.5rem;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgba(255, 255, 255, 60%);
+    backdrop-filter: blur(3px);
+}
+
+.teamStats span[data-alive=false] {
+    text-decoration: line-through;
+}
+
+#EndGame {
+    background-color: rgba(30, 30, 30, 90%);
+    width: 100%;
+    position: absolute;
+    height: 20rem;
+    top: 200px;
+    text-align:center;
+    color: white;
+    display:flex;
+    gap:2rem;
+    flex-direction:column;
+}
+
+#WinnerName {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#WinnerScore {
+    font-weight: bold;
+}
+
+#WinnerSteps {
+    font-weight: bold;
+}
