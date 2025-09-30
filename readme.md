@@ -1,12 +1,14 @@
 # Snake - General information
 
-This game runs in your browser (client side), no server is needed. To start the game simply open [snake.html].
+This game runs in your browser (client side), no server is needed. To start the game simply open [snake.html] in a browser of your choice.
 
 ## Game rules
 
-## File structure
+This is a basic snake games. Snake compete against each other to fight for food and survival. The twist: no person (human intelligence) is controlling the snakes, but AI are battling. With each food eaten, the length of the snake increases, reflected as score. To avoid snakes circling around endlessly, the snakes have a health bar. The health is decreased with each step and can be refilled completely by eating. 
 
-### The game
+The winner of the battle is no the longest survivor, but the snake with the highest score. 
+
+## File structure
 
 - [snake.html] and [snake.css] are the main game components, running the actual game. 
     - [game.js] is the starting point, creating the board and adding the snakes to the game.
@@ -19,12 +21,12 @@ This game runs in your browser (client side), no server is needed. To start the 
 What do you have to do to add your snake AI: 
 
 1) Create your on *js* file in sub folder *Teams*
-2) Add your new *js* to the [snake.html] into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be intepreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
+2) Add your new *js* to the [snake.html] into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be interpreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
 3) Implement the AI function: your function needs to take the *snake* object as argument. It does not have to return any value. Inside the function your are not allowed to manipulate the snake state, but you have to call methode *turn* exactly zero or one time. 
 
 ### Tips on implementing the AI
 
-With this repo, there comes a very simple exampe AI, see [Teams/team_example.js].
+With this repo, there comes a very simple example AI, see [Teams/team_example.js].
 
 The actual functions called by the game are:
 
@@ -45,25 +47,25 @@ To encapsulate the methods, all methods are part of a helper class *AI_Example*.
         - Example 1: we are going right, but want to go up: then the command will be "turn left" ("L").
         - Example 2: we are going right, but want to go left: then the command will be "turn left" ("L") or "turn right" ("R"), since for are u-turn we can go either way. 
     - With the list of command we want to execute, we remove those commands which are not possible (see second step). 
-    - In the end, we execute one of the remaining command selected randomly. If the selected command is "S" (going straight), we do nothing, else we use snake's methode *turn(command)*. 
+    - In the end, we execute one of the remaining command selected randomly. If the selected command is "S" (going straight), we do nothing, else we use snake's method *turn(command)*. 
 2) **tryToSurvive**
-    - We start very similar to the other methode: find all possible moves without collisions. 
-        - Since we want to prefer the straight command (to not roll up the snake like a snai), we add the straight command multiple times (as often as the board is wide, see *dim.w*). 
+    - We start very similar to the other method: find all possible moves without collisions. 
+        - Since we want to prefer the straight command (to not roll up the snake like a snail), we add the straight command multiple times (as often as the board is wide, see *dim.w*). 
     - Then, we select one command by chance. In case of "S", do nothing. In case of "L" or "R" execute method *turn* accordingly. 
     - One special case: there is condition check for food distance and snake health. 
         - Since snake will starve in this game and the movement is completely random, the snake will starve.
-        - To avoid starvation, the snake changes its behaviour when passing food (with distance of 20 pixel or less) or when healt is below 20%. 
-        - In that case, we simple swith to the first method *runToFood*.
+        - To avoid starvation, the snake changes its behaviour when passing food (with distance of 20 pixel or less) or when health is below 20%. 
+        - In that case, we simple switch to the first method *runToFood*.
         - Setting the run mode with *setData* is just for demonstration purposes and not used anywhere. 
         
 ## API useful for your API
 
-In general all data is accessable via the *snake* object handed over to the AI function. 
+In general all data is accessible via the *snake* object handed over to the AI function. 
 
 - *snake.game* give you the *Game* object. 
 - *snake.game.board* give you access to the *Board* object. 
 
-In the following, if something is returned (or taken) as **position**, an object with structure *{x: number, y: number}* is meant. A **direction** means the global direction, one of up ("U"), left ("L"), down ("D") or right ("R"). A **command** could be one of the following: turn left ("L") or turn right ("R"). If you want to go straiht, do not give a command. **pixel** refers to the stats of given coordinates on the board, which can be *0* for a free pixel, *1* for a pixel with food or a *snake object* when a pixel is occupied by a snake. 
+In the following, if something is returned (or taken) as **position**, an object with structure *{x: number, y: number}* is meant. A **direction** means the global direction, one of up ("U"), left ("L"), down ("D") or right ("R"). A **command** could be one of the following: turn left ("L") or turn right ("R"). If you want to go straight, do not give a command. **pixel** refers to the stats of given coordinates on the board, which can be *0* for a free pixel, *1* for a pixel with food or a *snake object* when a pixel is occupied by a snake. 
 
 Some functions help to find the correct information: 
 
@@ -80,5 +82,7 @@ Some functions help to find the correct information:
 - *snake.game.board.getFoodPos() : position* returns the position of the food item on the board. 
 - *snake.game.board.getPixel(x: number, y: number) : pixel* returns the content of the given coordinates. The return values can be *0* for a free pixel, *1* for the food or an *snake object*. If the return value is a snake object can be checked with the next method:
 - *snake.game.board.isSnake(pixel)* : bool: returns true, if the given pixel is a snake object. 
+
+- *dim* is a global variable containing the width *dim.w* and height *dim.h* of the board in grid steps. The global grid goes from *0* to *dim.w-1* (*dim.h-1* respectively). 
 
 **All other methods or properties** should not be called or modified by the AI (cheating). 
