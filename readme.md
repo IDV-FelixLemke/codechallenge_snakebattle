@@ -22,8 +22,8 @@ What do you have to do to add your snake AI:
 
 1) Create your on *js* file in sub folder *Teams*
 2) Add your new *js* to the [snake.html] 
-    a) to load the file via ```<script src="./Teams/{YOUR_FILE.js}" type="text/javascript"></script> ``` and
-    b) into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be interpreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
+    - to load the file via ```<script src="./Teams/{YOUR_FILE.js}" type="text/javascript"></script> ``` and
+    - into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be interpreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
 3) Implement the AI function: your function needs to take the *snake* object as argument. It does not have to return any value. Inside the function your are not allowed to manipulate the snake state, but you have to call method ```turn(command)``` exactly zero or one time. 
 
 ### Tips on implementing the AI
@@ -45,7 +45,7 @@ To encapsulate the methods, all methods are part of a helper class *AI_Example*.
         - If there is no possible move, well, then we are screwed up (just return and face death in the eye). 
     - Then, with helper method *shortestWayToFood*, we find the move, which brings us closer to the food target. 
         - This method returns the global direction, so up ("U"), down ("D"), left ("L") and right ("R").
-    - We then convert the global direction into a command for the snake using *weWantToGo*, which is acutally an array. 
+    - We then convert the global direction into a command for the snake using *weWantToGo*, which is actually an array. 
         - Example 1: we are going right, but want to go up: then the command will be "turn left" ("L").
         - Example 2: we are going right, but want to go left: then the command will be "turn left" ("L") or "turn right" ("R"), since for are u-turn we can go either way. 
     - With the list of command we want to execute, we remove those commands which are not possible (see second step). 
@@ -64,28 +64,28 @@ To encapsulate the methods, all methods are part of a helper class *AI_Example*.
 
 In general all data is accessible via the *snake* object handed over to the AI function. 
 
-- *snake.game* give you the *Game* object. 
-- *snake.game.board* give you access to the *Board* object. 
+- ```snake.game``` give you the *Game* object. 
+- ```snake.game.board``` give you access to the *Board* object. 
 
 In the following, if something is returned (or taken) as **position**, an object with structure *{x: number, y: number}* is meant. A **direction** means the global direction, one of up ("U"), left ("L"), down ("D") or right ("R"). A **command** could be one of the following: turn left ("L") or turn right ("R"). If you want to go straight, do not give a command. **pixel** refers to the stats of given coordinates on the board, which can be *0* for a free pixel, *1* for a pixel with food or a *snake object* when a pixel is occupied by a snake. 
 
 Some functions help to find the correct information: 
 
-- *snake.getPos() : position* returns the position of the snake (head) as position. 
-- *snake.getScore() : number* returns the score of the snake, basically just the snake length.
-- *snake.getStepCount() : number* returns the total number steps a snake has taken. 
-- *snake.getHealth() : number* returns the health of the snake in percent. If the health runs out, the snake starves. The health completely refills when eating. Each step reduces the snake's health. 
-- *snake.getMaxHealth() : number* returns the maximum health, meaning the number of steps until the snake starves. After eating, the health is restored to that value. 
-- *snake.getDir() : direction* returns the global direction of the snake.
-- *snake.turn(command)* is the main functions you call from your API. Once per step, you can decide to turn once left or right.
-- *snake.turnDir(command) : direction* gives you the global direction if you would turn. Example: if your snake is going in direction "R", then the method *snake.turnDir("L")* will return "U").
-- *snake.nextPosInDir(direction) : position* gives you the theoretical new position if the step is executed. If no direction is given, the current snake direction is assumed. This function is helpful together with *snake.turnDir(command)* to get the next position if turned into a certain direction. 
-- *snake.checkCollision(position) : bool* returns true if the given position would cause a collision (including with board boundaries or snakes).
+- ```snake.getPos() : position``` returns the position of the snake (head) as position. 
+- ```snake.getScore() : number``` returns the score of the snake, basically just the snake length.
+- ```snake.getStepCount() : number``` returns the total number steps a snake has taken. 
+- ```snake.getHealth() : number``` returns the health of the snake in percent. If the health runs out, the snake starves. The health completely refills when eating. Each step reduces the snake's health. 
+- ```snake.getMaxHealth() : number``` returns the maximum health, meaning the number of steps until the snake starves. After eating, the health is restored to that value. 
+- ```snake.getDir() : direction``` returns the global direction of the snake.
+- ```snake.turn(command)``` is the main functions you call from your API. Once per step, you can decide to turn once left or right.
+- ```snake.turnDir(command) : direction``` gives you the global direction if you would turn. Example: if your snake is going in direction "R", then the method *snake.turnDir("L")* will return "U").
+- ```snake.nextPosInDir(direction) : position``` gives you the theoretical new position if the step is executed. If no direction is given, the current snake direction is assumed. This function is helpful together with ```snake.turnDir(command)``` to get the next position if turned into a certain direction. 
+- ```snake.checkCollision(position) : bool``` returns true if the given position would cause a collision (including with board boundaries or snakes).
 
-- *snake.game.board.getFoodPos() : position* returns the position of the food item on the board. 
-- *snake.game.board.getPixel(x: number, y: number) : pixel* returns the content of the given coordinates. The return values can be *0* for a free pixel, *1* for the food or an *snake object*. If the return value is a snake object can be checked with the next method:
-- *snake.game.board.isSnake(pixel)* : bool: returns true, if the given pixel is a snake object. 
+- ```snake.game.board.getFoodPos() : position``` returns the position of the food item on the board. 
+- ```snake.game.board.getPixel(x: number, y: number) : pixel``` returns the content of the given coordinates. The return values can be *0* for a free pixel, *1* for the food or an *snake object*. If the return value is a snake object can be checked with the next method:
+- ```snake.game.board.isSnake(pixel) : bool``` returns true, if the given pixel is a snake object. 
 
-- *dim* is a global variable containing the width *dim.w* and height *dim.h* of the board in grid steps. The global grid goes from *0* to *dim.w-1* (*dim.h-1* respectively). 
+- ```dim``` is a global variable containing the width *dim.w* and height *dim.h* of the board in grid steps. The global grid goes from *0* to *dim.w-1* (*dim.h-1* respectively). 
 
 **All other methods or properties** should not be called or modified by the AI (cheating). 
