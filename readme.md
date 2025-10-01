@@ -21,8 +21,10 @@ The winner of the battle is no the longest survivor, but the snake with the high
 What do you have to do to add your snake AI: 
 
 1) Create your on *js* file in sub folder *Teams*
-2) Add your new *js* to the [snake.html] into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be interpreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
-3) Implement the AI function: your function needs to take the *snake* object as argument. It does not have to return any value. Inside the function your are not allowed to manipulate the snake state, but you have to call methode *turn* exactly zero or one time. 
+2) Add your new *js* to the [snake.html] 
+    a) to load the file via ```<script src="./Teams/{YOUR_FILE.js}" type="text/javascript"></script> ``` and
+    b) into the array *SnakeAIs*. Each list entry has to hold an object with properties *color* (a string which can be interpreted by [canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)), *team* (as string with your team name) and a *moveFunction* (a reference to your AI function executed on each step). 
+3) Implement the AI function: your function needs to take the *snake* object as argument. It does not have to return any value. Inside the function your are not allowed to manipulate the snake state, but you have to call method ```turn(command)``` exactly zero or one time. 
 
 ### Tips on implementing the AI
 

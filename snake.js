@@ -8,6 +8,7 @@ class Snake {
     #maxHealth;
     #stepCount;
     #hungerIn;
+    #alreadyTurned;
     constructor(game, data, startPos) {
         this.isSnake = true;
         this.alive = true;
@@ -23,6 +24,7 @@ class Snake {
         this.#maxHealth = dim.w*dim.h / 5; // scaling with grid size
         this.#stepCount = 0;
         this.#hungerIn = this.#maxHealth; 
+        this.#alreadyTurned = false;
     }
     
     getPos() {
@@ -51,7 +53,12 @@ class Snake {
     }
     
     turn(turn) {
+        if(this.#alreadyTurned) {
+            console.warn("Turn got called more then once");
+            return;
+        }
         this.#dir = this.turnDir(turn);
+        this.#alreadyTurned = true;
     }
     
     turnDir(turn) {
@@ -88,6 +95,7 @@ class Snake {
     }
     
     step() {
+        this.#alreadyTurned = false;
         this.moveFuncion(this);
         let newPos = this.nextPosInDir();
         // check for collision
