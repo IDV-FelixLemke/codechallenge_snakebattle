@@ -32,6 +32,9 @@ class Snake {
     getScore() {
         return this.#length;
     }
+    getMaxHealth() {
+        return this.#maxHealth;
+    }
     
     getStepCount() {
         return this.#stepCount;

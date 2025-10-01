@@ -76,14 +76,16 @@ class Game {
             place++;
             teamStatus += `
                 <div class="teamStats">
-                    <div style="display:flex; flex-direction:row;gap: 1em; align-items:center">
-                        <span data-alive="${snake.alive}">${place}. ${snake.team}</span>
-                        <div style="width:1em; height:1em; background-color:${snake.color};"></div>
-                        <div style="width:40%; height:1em; background-color:grey;border-radius:5px">
-                            <div style="width:${snake.getHealth()*0.97}%; height:0.6em; margin:0.2em; background-color:red;border-radius:5px"></div>
+                    <div class="teamInfo">
+                        <div class="teamName">
+                            <div style="width:1em; height:1em; background-color:${snake.color};"></div>
+                            <span data-alive="${snake.alive}">${place}. ${snake.team}</span>
+                        </div>
+                        <div class="healthBarOuter">
+                            <div style="width:${snake.getHealth()*0.97}%;" class="healthBarInner"></div>
                         </div>
                     </div>
-                    <span style="font-weight:bold;">Score: ${snake.getScore()}</span>
+                    <div class="teamScore">Score: ${snake.getScore()}</div>
                 </div>
             `;
         });

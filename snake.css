@@ -33,6 +33,30 @@ body {
     align-items: center;
 }
 
+.teamInfo {
+    display:flex;
+    flex-direction:row;
+    gap: 1em;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.teamName {
+    display: flex; 
+    flex-direction:row; 
+    justify-content:start; 
+    gap:0.5em;
+    max-width:50%
+}
+
+.teamName span {
+    text-wrap:nowrap; 
+    max-width:calc(100% - 2em);
+}
+
+
+
+
 .teamStats {
     display: flex;
     margin:0.5rem;
@@ -47,6 +71,10 @@ body {
 
 .teamStats span[data-alive=false] {
     text-decoration: line-through;
+}
+
+.teamScore {
+    font-weight:bold;
 }
 
 #EndGame {
@@ -73,4 +101,18 @@ body {
 
 #WinnerSteps {
     font-weight: bold;
+}
+
+.healthBarOuter {
+    width:40%;
+    height:1em;
+    background-color:grey;
+    border-radius:5px
+}
+
+.healthBarInner {
+    height:0.6em;
+    margin:0.2em;
+    background-color:red;
+    border-radius:5px
 }

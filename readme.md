@@ -73,6 +73,7 @@ Some functions help to find the correct information:
 - *snake.getScore() : number* returns the score of the snake, basically just the snake length.
 - *snake.getStepCount() : number* returns the total number steps a snake has taken. 
 - *snake.getHealth() : number* returns the health of the snake in percent. If the health runs out, the snake starves. The health completely refills when eating. Each step reduces the snake's health. 
+- *snake.getMaxHealth() : number* returns the maximum health, meaning the number of steps until the snake starves. After eating, the health is restored to that value. 
 - *snake.getDir() : direction* returns the global direction of the snake.
 - *snake.turn(command)* is the main functions you call from your API. Once per step, you can decide to turn once left or right.
 - *snake.turnDir(command) : direction* gives you the global direction if you would turn. Example: if your snake is going in direction "R", then the method *snake.turnDir("L")* will return "U").
