@@ -10,7 +10,7 @@ The winner of the battle is no the longest survivor, but the snake with the high
 
 ## File structure
 
-- [snake.html] and [snake.css] are the main game components, running the actual game. 
+- [snake.html] and [snake.css] are the main game components, running the actual game.
     - [game.js] is the starting point, creating the board and adding the snakes to the game.
     - In [snake.html], the starters are defined (see [Add a new AI]).
 - Helper classes are implemented in [snake.js] and [board.js].
@@ -32,8 +32,8 @@ With this repo, there comes a very simple example AI, see [Teams/team_example.js
 
 The actual functions called by the game are:
 
-- team_example_runToFood(snake)
-- team_example_tryToSurvive(snake)
+- ```team_example_runToFood(snake)```
+- ```team_example_tryToSurvive(snake)```
 
 To encapsulate the methods, all methods are part of a helper class *AI_Example*. This is not necessary, but avoids functions with the same name as used by other teams. Similar, if you want to save data (e.g. to store something over multiple steps, such as making decision and remembering that for the next step), you can store the data on the snake object itself. As an example, the two methods *setData* and *getData* are part of the example class. 
 
@@ -60,7 +60,7 @@ To encapsulate the methods, all methods are part of a helper class *AI_Example*.
         - In that case, we simple switch to the first method *runToFood*.
         - Setting the run mode with *setData* is just for demonstration purposes and not used anywhere. 
         
-## API useful for your API
+## API useful for your AI
 
 In general all data is accessible via the *snake* object handed over to the AI function. 
 
